@@ -9,17 +9,17 @@ const Edit = () => {
   const [dis,setDis]=useState("")
   let data = JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : []
   const [record,setRecord] = useState(data)
-
+const editdata = location.state
   useEffect(()=>{
     if(location?.state?.id === null || location?.state?.id == undefined){
       navigate('/view')
     }
-  },[])
-
-  useEffect(()=>{
-    setName(location?.state?.name)
-    setDis(location?.state?.dis)
-  })
+    if(editdata)
+      {
+        setName(editdata.name)
+        setDis(editdata.dis)
+      }
+  },[editdata])
 
   const handleSubmit =(e)=>{
     e.preventDefault()
